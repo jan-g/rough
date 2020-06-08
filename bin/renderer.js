@@ -47,6 +47,9 @@ export function curve(points, o) {
     }
     return { type: 'path', ops: o1 };
 }
+export function text(x, y, text, o) {
+    return { type: 'text', ops: [{ op: 'text', data: [x, y], text, font: o }] };
+}
 export function ellipse(x, y, width, height, o) {
     const params = generateEllipseParams(width, height, o);
     return ellipseWithParams(x, y, o, params).opset;

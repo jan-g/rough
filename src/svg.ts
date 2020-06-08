@@ -1,4 +1,4 @@
-import { Config, Options, OpSet, ResolvedOptions, Drawable, SVGNS } from './core';
+import { Config, Options, OpSet, ResolvedOptions, FontOptions, Drawable, SVGNS } from './core';
 import { RoughGenerator } from './generator';
 import { Point } from './geometry';
 
@@ -46,6 +46,15 @@ export class RoughSVG {
         }
         case 'fillSketch': {
           path = this.fillSketch(doc, drawing, o);
+          break;
+        }
+        case 'text': {
+          path = doc.createElementNS(SVGNS, 'text');
+          const op = drawing.ops[0];
+          path.setAttribute('x', String(op.data[0]));
+          path.setAttribute('y', String(op.data[1]));
+          path.setAttribute('style', 'font-size:' + op.font?.size ?? '10px');
+          path.appendChild(doc.createTextNode(op.text || ''));
           break;
         }
       }
@@ -130,5 +139,10 @@ export class RoughSVG {
   path(d: string, options?: Options): SVGGElement {
     const drawing = this.gen.path(d, options);
     return this.draw(drawing);
+  }
+
+  text(x: number, y: number, text: string, options?: FontOptions): SVGElement {
+    const d = this.gen.text(x, y, text, options);
+    return this.draw(d);
   }
 }

@@ -1,4 +1,4 @@
-import { Config, Options, Drawable, OpSet, ResolvedOptions, PathInfo } from './core.js';
+import { Config, Options, Drawable, OpSet, ResolvedOptions, FontOptions, PathInfo } from './core.js';
 import { Point } from './geometry.js';
 export declare class RoughGenerator {
     private config;
@@ -16,6 +16,8 @@ export declare class RoughGenerator {
     curve(points: Point[], options?: Options): Drawable;
     polygon(points: Point[], options?: Options): Drawable;
     path(d: string, options?: Options): Drawable;
+    defaultFontOptions: FontOptions;
+    text(x: number, y: number, t: string, options?: FontOptions): Drawable;
     opsToPath(drawing: OpSet): string;
     toPaths(drawable: Drawable): PathInfo[];
     private fillSketch;

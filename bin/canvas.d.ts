@@ -1,4 +1,4 @@
-import { Config, Options, ResolvedOptions, Drawable } from './core';
+import { Config, Options, ResolvedOptions, FontOptions, Drawable } from './core';
 import { RoughGenerator } from './generator';
 import { Point } from './geometry';
 export declare class RoughCanvas {
@@ -20,4 +20,5 @@ export declare class RoughCanvas {
     arc(x: number, y: number, width: number, height: number, start: number, stop: number, closed?: boolean, options?: Options): Drawable;
     curve(points: Point[], options?: Options): Drawable;
     path(d: string, options?: Options): Drawable;
+    text(x: number, y: number, text: string, options?: FontOptions): Drawable;
 }

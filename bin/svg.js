@@ -6,6 +6,7 @@ export class RoughSVG {
         this.gen = new RoughGenerator(config);
     }
     draw(drawable) {
+        var _a, _b;
         const sets = drawable.sets || [];
         const o = drawable.options || this.getDefaultOptions();
         const doc = this.svg.ownerDocument || window.document;
@@ -40,6 +41,15 @@ export class RoughSVG {
                 }
                 case 'fillSketch': {
                     path = this.fillSketch(doc, drawing, o);
+                    break;
+                }
+                case 'text': {
+                    path = doc.createElementNS(SVGNS, 'text');
+                    const op = drawing.ops[0];
+                    path.setAttribute('x', String(op.data[0]));
+                    path.setAttribute('y', String(op.data[1]));
+                    path.setAttribute('style', (_b = 'font-size:' + ((_a = op.font) === null || _a === void 0 ? void 0 : _a.size)) !== null && _b !== void 0 ? _b : '10px');
+                    path.appendChild(doc.createTextNode(op.text || ''));
                     break;
                 }
             }
@@ -111,5 +121,9 @@ export class RoughSVG {
     path(d, options) {
         const drawing = this.gen.path(d, options);
         return this.draw(drawing);
+    }
+    text(x, y, text, options) {
+        const d = this.gen.text(x, y, text, options);
+        return this.draw(d);
     }
 }

@@ -1,4 +1,4 @@
-import { ResolvedOptions, Op, OpSet } from './core.js';
+import { ResolvedOptions, FontOptions, Op, OpSet } from './core.js';
 import { Point } from './geometry.js';
 import { getFiller } from './fillers/filler.js';
 import { RenderHelper } from './fillers/filler-interface.js';
@@ -60,6 +60,10 @@ export function curve(points: Point[], o: ResolvedOptions): OpSet {
     o1 = o1.concat(o2);
   }
   return { type: 'path', ops: o1 };
+}
+
+export function text(x: number, y: number, text: string, o: FontOptions): OpSet {
+  return { type: 'text', ops: [{op: 'text', data: [x, y], text, font: o}] };
 }
 
 export interface EllipseResult {

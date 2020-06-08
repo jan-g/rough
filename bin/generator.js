@@ -1,4 +1,4 @@
-import { line, solidFillPolygon, patternFillPolygon, rectangle, ellipseWithParams, generateEllipseParams, linearPath, arc, patternFillArc, curve, svgPath } from './renderer.js';
+import { line, solidFillPolygon, patternFillPolygon, rectangle, ellipseWithParams, generateEllipseParams, linearPath, arc, patternFillArc, curve, svgPath, text } from './renderer.js';
 import { randomSeed } from './math.js';
 import { curveToBezier } from 'points-on-curve/lib/curve-to-bezier.js';
 import { pointsOnBezierCurves } from 'points-on-curve';
@@ -26,6 +26,9 @@ export class RoughGenerator {
             combineNestedSvgPaths: false,
             disableMultiStroke: false,
             disableMultiStrokeFill: false
+        };
+        this.defaultFontOptions = {
+            size: "10px",
         };
         this.config = config || {};
         if (this.config.options) {
@@ -192,6 +195,12 @@ export class RoughGenerator {
             }
         }
         return this._d('path', paths, o);
+    }
+    text(x, y, t, options) {
+        const o = options ? Object.assign({}, this.defaultFontOptions, options) : this.defaultFontOptions;
+        const paths = [];
+        paths.push(text(x, y, t, o));
+        return { shape: 'text', sets: paths, options: this.defaultOptions };
     }
     opsToPath(drawing) {
         let path = '';

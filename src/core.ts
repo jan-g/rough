@@ -63,12 +63,18 @@ export interface ResolvedOptions extends Options {
   disableMultiStrokeFill: boolean;
 }
 
-export declare type OpType = 'move' | 'bcurveTo' | 'lineTo';
-export declare type OpSetType = 'path' | 'fillPath' | 'fillSketch';
+export interface FontOptions {
+  size: string;
+}
+
+export declare type OpType = 'move' | 'bcurveTo' | 'lineTo' | 'text';
+export declare type OpSetType = 'path' | 'fillPath' | 'fillSketch' | 'text';
 
 export interface Op {
   op: OpType;
   data: number[];
+  text?: string;
+  font?: FontOptions;
 }
 
 export interface OpSet {

@@ -1,4 +1,4 @@
-import { ResolvedOptions, Op, OpSet } from './core.js';
+import { ResolvedOptions, FontOptions, Op, OpSet } from './core.js';
 import { Point } from './geometry.js';
 interface EllipseParams {
     rx: number;
@@ -10,6 +10,7 @@ export declare function linearPath(points: Point[], close: boolean, o: ResolvedO
 export declare function polygon(points: Point[], o: ResolvedOptions): OpSet;
 export declare function rectangle(x: number, y: number, width: number, height: number, o: ResolvedOptions): OpSet;
 export declare function curve(points: Point[], o: ResolvedOptions): OpSet;
+export declare function text(x: number, y: number, text: string, o: FontOptions): OpSet;
 export interface EllipseResult {
     opset: OpSet;
     estimatedPoints: Point[];

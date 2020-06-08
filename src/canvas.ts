@@ -1,4 +1,4 @@
-import { Config, Options, ResolvedOptions, Drawable, OpSet } from './core';
+import { Config, Options, ResolvedOptions, FontOptions, Drawable, OpSet } from './core';
 import { RoughGenerator } from './generator';
 import { Point } from './geometry';
 
@@ -147,5 +147,11 @@ export class RoughCanvas {
     const drawing = this.gen.path(d, options);
     this.draw(drawing);
     return drawing;
+  }
+
+  text(x: number, y: number, text: string, options?: FontOptions): Drawable {
+    const d = this.gen.text(x, y, text, options);
+    this.draw(d);
+    return d;
   }
 }

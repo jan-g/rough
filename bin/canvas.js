@@ -128,4 +128,9 @@ export class RoughCanvas {
         this.draw(drawing);
         return drawing;
     }
+    text(x, y, text, options) {
+        const d = this.gen.text(x, y, text, options);
+        this.draw(d);
+        return d;
+    }
 }

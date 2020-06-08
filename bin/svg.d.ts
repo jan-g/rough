@@ -1,4 +1,4 @@
-import { Config, Options, OpSet, ResolvedOptions, Drawable } from './core';
+import { Config, Options, OpSet, ResolvedOptions, FontOptions, Drawable } from './core';
 import { RoughGenerator } from './generator';
 import { Point } from './geometry';
 export declare class RoughSVG {
@@ -19,4 +19,5 @@ export declare class RoughSVG {
     arc(x: number, y: number, width: number, height: number, start: number, stop: number, closed?: boolean, options?: Options): SVGGElement;
     curve(points: Point[], options?: Options): SVGGElement;
     path(d: string, options?: Options): SVGGElement;
+    text(x: number, y: number, text: string, options?: FontOptions): SVGElement;
 }
